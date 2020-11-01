@@ -1,0 +1,589 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>雷达坐标转换 RAE2BLH - 林后生</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="雷达坐标转换，从RAE转大地BLH坐标系标签（空格分隔..."> 
+  
+  <meta name="author" content="helllyf"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_onl0g0h21np.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+  
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        onlyPost: 'false',
+        loading: '/images/theme/loading.gif'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '对于一个盲目航行的船来说，所有的风都是逆风。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: true
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">雷达坐标转换 RAE2BLH</div>
+  <div class="right">
+    
+      <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+    
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/galleries " class="underline"> 摄影</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/raderRAE2BLH/banner.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">雷达坐标转换 RAE2BLH</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 01, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>6264</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="雷达坐标转换，从RAE转大地BLH坐标系"><a href="#雷达坐标转换，从RAE转大地BLH坐标系" class="headerlink" title="雷达坐标转换，从RAE转大地BLH坐标系"></a>雷达坐标转换，从RAE转大地BLH坐标系</h1><p>标签（空格分隔）： 无趣</p>
+<hr>
+<p><em>文章参考CSDN的一些文章以及论文，就不一一引用列出</em></p>
+<p><strong>RAE转xyz，直角坐标系与极坐标系之间的转换</strong></p>
+<p><img   class="lazyload" data-original="/images/raderRAE2BLH/rae2xyz.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="rae2xyz"></p>
+<pre><code>/*雷达坐标系的直角坐标系xyz 转极坐标RAE(m,du,du) */
+void xyz2RAE(Real x, Real y, Real z, Real&amp; R, Real&amp; A, Real&amp; E)
+&#123;
+    R = sqrt(x*x + y*y + z*z);
+    A = atan2(y, x)*(180.0/_PI);
+    E = acos(sqrt(x*x + y*y)/R)*(180.0/_PI);
+&#125;
+/*雷达坐标系的极坐标RAE(m,du,du)转直角坐标系xyz */
+void RAE2xyz(Real R, Real A, Real E, Real&amp; x, Real&amp; y, Real&amp; z)
+&#123;
+    //度转弧度
+    Real A1  = A*_PI/180.0; 
+    Real E1  = E*_PI/180.0; 
+    x = R*cos(E1)*cos(A1);
+    y = R*cos(E1)*sin(A1);
+    z = R*sin(E1);
+&#125;</code></pre>
+<p><strong>xyz转XYZ，目标相对雷达的直角坐标系转换成相对于大地的直角坐标系</strong><br><img   class="lazyload" data-original="/images/raderRAE2BLH/xyz2XYZ1.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="此处输入图片的描述"></p>
+<p><img   class="lazyload" data-original="/images/raderRAE2BLH/xyz2XYZ2.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="此处输入图片的描述"></p>
+<pre><code>/*矩阵计算辅助函数*/
+void MetricMulti3x3( const Real *x, const Real *y, Real *z )
+&#123;
+    z[0] = x[0]*y[0]+x[1]*y[3]+x[2]*y[6];
+    z[1] = x[0]*y[1]+x[1]*y[4]+x[2]*y[7];
+    z[2] = x[0]*y[2]+x[1]*y[5]+x[2]*y[8];
+
+    z[3] = x[3]*y[0]+x[4]*y[3]+x[5]*y[6];
+    z[4] = x[3]*y[1]+x[4]*y[4]+x[5]*y[7];
+    z[5] = x[3]*y[2]+x[4]*y[5]+x[5]*y[8];
+
+    z[6] = x[6]*y[0]+x[7]*y[3]+x[8]*y[6];
+    z[7] = x[6]*y[1]+x[7]*y[4]+x[8]*y[7];
+    z[8] = x[6]*y[2]+x[7]*y[5]+x[8]*y[8];
+&#125;
+void MetricMulti33x31( const Real *x, const Real *y, Real *z )
+&#123;
+    z[0] = x[0]*y[0]+x[1]*y[1]+x[2]*y[2];
+    z[1] = x[3]*y[0]+x[4]*y[1]+x[5]*y[2];
+    z[2] = x[6]*y[0]+x[7]*y[1]+x[8]*y[2];
+&#125;
+
+/*将某点在大地直角坐标系下的XYZ，转化为l雷达坐标系下的xyz*/
+/*输入：lon lat hgt 为雷达经纬高， XYZ为目标在大地直角坐标系中的坐标*/
+/*输出：xyz为目标在雷达坐标系下的坐标*/
+void XYZ2xyz(Real lon, Real lat, Real hgt, Real X, Real Y, Real Z, Real&amp; x, Real&amp; y, Real&amp; z)
+&#123;
+    //将雷达的GPS转化为大地直角坐标
+    Real Rx,Ry,Rz;
+    GPS2XYZ(lon, lat, hgt, Rx, Ry, Rz);
+    //计算pos-pos0
+    Real Tmp[3];
+    Tmp[0] = X - Rx;
+    Tmp[1] = Y - Ry;
+    Tmp[2] = Z - Rz;
+    //旋转矩阵
+    //Real XX[9] = &#123;1, 0, 0, 0, cos(90-lat) ,sin(90-lat), 0, -sin(90-lat), cos(90-lat)&#125;;
+    //Real ZZ[9] = &#123;cos(90+lon), sin(90+lon), 0, -sin(90+lon), cos(90+lon), 0, 0, 0, 1&#125;;
+    Real XX[9] = &#123;1, 0, 0, 0, cos((90-lat)*_PI/180.0) ,-sin((90-lat)*_PI/180.0), 0, sin((90-lat)*_PI/180.0), cos((90-lat))*_PI/180.0&#125;;
+    Real ZZ[9] = &#123;cos((90+lon)*_PI/180.0), -sin((90+lon)*_PI/180.0), 0, sin((90+lon)*_PI/180.0), cos((90+lon)*_PI/180.0), 0, 0, 0, 1&#125;;
+
+    Real Rotate[9];
+    MetricMulti3x3(XX, ZZ, Rotate);
+
+    //计算雷达坐标系下的位置
+    Real Pos[3];
+    MetricMulti33x31(Rotate,Tmp,Pos);
+
+    x = Pos[0];
+    y = Pos[1];
+    z = Pos[2];
+&#125;
+
+/*将某点在雷达坐标系下的xyz转化为大地直角坐标系下的XYZ*/
+/*输入：lon lat hgt 为雷达经纬高， xyz为目标在雷达坐标系下的坐标*/
+/*输出：*XYZ为目标在大地直角坐标系中的坐标*/
+void xyz2XYZ(Real lon, Real lat, Real hgt, Real x, Real y, Real z, Real&amp; X, Real&amp; Y, Real&amp; Z)
+&#123;
+    //将雷达的GPS转化为大地直角坐标
+    Real Rx,Ry,Rz;
+    GPS2XYZ(lon, lat, hgt, Rx, Ry, Rz);
+
+    //旋转矩阵
+    //Real XX[9] = &#123;1, 0, 0, 0, cos(90-lat) ,-sin(90-lat), 0, sin(90-lat), cos(90-lat)&#125;;
+    //Real ZZ[9] = &#123;cos(90+lon), -sin(90+lon), 0, sin(90+lon), cos(90+lon), 0, 0, 0, 1&#125;;
+    Real XX[9] = &#123;1, 0, 0, 0, cos((90-lat)*_PI/180.0) ,-sin((90-lat)*_PI/180.0), 0, sin((90-lat)*_PI/180.0), cos((90-lat))*_PI/180.0&#125;;
+    Real ZZ[9] = &#123;cos((90+lon)*_PI/180.0), -sin((90+lon)*_PI/180.0), 0, sin((90+lon)*_PI/180.0), cos((90+lon)*_PI/180.0), 0, 0, 0, 1&#125;;
+
+    Real Rotate[9];
+    MetricMulti3x3(ZZ, XX, Rotate);
+
+    //计算雷达坐标系下的位置
+    Real tmp[3];
+    Real xyz[3];
+    xyz[0] = x;
+    xyz[1] = y;
+    xyz[2] = z;
+    MetricMulti33x31(Rotate,xyz,tmp);
+
+    X = tmp[0] + Rx;
+    Y = tmp[1] + Ry;
+    Z = tmp[2] + Rz;
+&#125;
+
+/*测试方法，忽略*/
+void newxyz2XYZcopy(Real lon, Real lat, Real hgt, Real x, Real y, Real z, Real&amp; X, Real&amp; Y, Real&amp; Z) &#123;
+    //将雷达的GPS转化为大地直角坐标
+    Real Rx,Ry,Rz;
+    GPS2XYZ(lon, lat, hgt, Rx, Ry, Rz);    
+    //旋转矩阵
+    double A[3][4] = &#123;
+        &#123;-sin(lon*_PI/180.0),cos(lon*_PI/180.0),0&#125;,
+        &#123;-sin(lat*_PI/180.0)*cos(lon*_PI/180.0),-sin(lat*_PI/180.0)*sin(lon*_PI/180.0),cos(lat*_PI/180.0)&#125;,
+        &#123;cos(lat*_PI/180.0)*cos(lon*_PI/180.0),cos(lat*_PI/180.0)*sin(lon*_PI/180.0),sin(lat*_PI/180.0)&#125;
+    &#125;;
+    //（A矩阵逆）
+&#125;</code></pre>
+<p><strong>XYZ转BLH，大地直角坐标系转大地经纬高坐标系</strong></p>
+<p><img   class="lazyload" data-original="/images/raderRAE2BLH/XYZ2BLH.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="XYZ2BLH"></p>
+<pre><code>/*将某点在大地坐标系下的GPS，转化为大地直角坐标系下的XYZ*/
+/*输入：lon lat hgt 为经纬高，单位为度                    */
+
+void GPS2XYZ(Real lon, Real lat, Real hgt, Real&amp; X, Real&amp; Y, Real&amp; Z)
+&#123;
+    Real B  = lat*_PI/180.0; // 纬度
+    Real L  = lon*_PI/180.0; // 经度
+    Real H = hgt; 
+
+#ifdef WGS_84
+    Real ac = 6378137.0;
+    Real f = 1.0/298.257223563;    
+#else
+    Real ac = 6378137.0;
+    Real f =1.0/298.257222101;
+#endif
+
+    Real e_2 = 2*f-f*f;
+    Real N =  ac/sqrt(1-e_2*(sin(B)*sin(B)));
+    /*地心直角坐标*/
+    X = (N+H) * cos(B) * cos(L);
+    Y = (N+H) * cos(B) * sin(L);
+    Z = (N*(1-e_2)+H)*sin(B);
+&#125;
+/*将某点在大地直角坐标系下的XYZ，转化为大地坐标系下的GPS*/
+/*迭代算法*/
+void XYZ2GPS(Real X, Real Y, Real Z, Real&amp; lon, Real&amp; lat, Real&amp; hgt)
+&#123;
+#ifdef WGS_84
+    Real ac = 6378137.0;
+    Real f = 1.0/298.257223563;    
+#else
+    Real ac = 6378137.0;
+    Real f =1.0/298.257222101;
+#endif
+
+    //Real e_2 = 2*f-f*f;
+    Real bc = (1 -f)*ac;
+    Real e_2 = (ac*ac-bc*bc)/(ac*ac);
+    //初值
+    Real Rm0 = ac;
+    Real Hm0 = sqrt(X*X + Y*Y + Z*Z) - sqrt(ac*bc);
+    Real Bm0 = atan2( Z*(Rm0 + Hm0), (Rm0*(1-e_2)+Hm0)*sqrt(X*X + Y*Y));
+    //迭代算法
+    Real N = 0;
+    Real Hm = 0;
+    Real Bm = 0;    
+    while(fabs(Bm-Bm0)&gt;1e-5)
+    &#123;
+        N = ac/sqrt(1-e_2*pow(sin(Bm0) ,2));
+        Hm = sqrt(X*X+Y*Y)/cos(Bm0) - N;
+        Bm = atan2(Z*(N+Hm), sqrt(X*X + Y*Y)*(N*(1-e_2)+Hm));
+        Bm0 = Bm;
+    &#125;
+    lat = Bm/(_PI/180.0);
+    lon = atan2(Y, X)/(_PI/180.0);
+    hgt = sqrt(X*X+Y*Y)/cos(Bm) - ac/sqrt(1-e_2*pow(sin(Bm) ,2));//重新计算
+&#125;</code></pre>
+<p><strong>RAE转BLH，最后调用上面的坐标转换函数，进行RAE转BLH</strong></p>
+<pre><code>const Real _PI      = Real(3.141592653589793);
+#define WGS_84        //屏蔽此定义则默认计算CGCS2000
+typedef double Real;
+//对外提供的坐标转换函数
+void RAE2WGS84(Real R, Real A, Real E, Real lon, Real lat, Real hgt, Real&amp; B, Real&amp; L, Real&amp; H)
+&#123;
+      Real nx = 0,ny = 0,nz = 0,X = 0,Y = 0,Z = 0;
+    RAE2xyz(R,A,E,nx, ny,nz);  
+    xyz2XYZ(lon,lat,hgt, nx,ny,nz, X,Y,Z);
+    cout&lt;&lt;std::setprecision(10)&lt;&lt;X&lt;&lt;&quot; &quot;&lt;&lt;Y&lt;&lt;&quot; &quot;&lt;&lt;Z&lt;&lt;&quot; BLH: &quot;;
+    XYZ2GPS(X, Y, Z, L, B, H);
+    cout&lt;&lt;B&lt;&lt;&quot; &quot;&lt;&lt;L&lt;&lt;&quot; &quot;&lt;&lt;H&lt;&lt;endl;
+&#125;</code></pre>
+
+      </section>
+      <section class="extra">
+        
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>helllyf</li>
+  <li><strong>本文链接：</strong><a href="http://example.com/2020/11/01/raderRAE2BLH/index.html">http://example.com/2020/11/01/raderRAE2BLH/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        <section class="donate">
+  <div class="qrcode">
+    <img   class="lazyload" data-original="https://pic.izhaoo.com/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+<nav class="nav">
+  
+  
+    <a href="/2020/11/01/hello-world/">Hello World<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="tencent://message/?Menu=yes&uin=894519210 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconQQ "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="javascript:; " target="_blank" onMouseOver="this.style.color= '#09BB07'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconwechat-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="https://www.instagram.com/izhaoo/ " target="_blank" onMouseOver="this.style.color= '#DA2E76'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconinstagram "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="https://github.com/izhaoo " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:izhaoo@163.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-daovoice">
+    <i class="iconfont iconcomment"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["DaoVoiceObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    a.charset = "utf-8";
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+    "//widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+  daovoice('init', {
+    app_id: "abcdefg"
+  }, {
+    launcher: {
+      disableLauncherIcon: true,
+    },
+  });
+  daovoice('update');
+</script>
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>
